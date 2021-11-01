@@ -1,0 +1,20 @@
+# Let new devices join our zigbee network
+permit_join: false
+# Docker-Compose makes the MQTT-Server available using "mqtt" hostname
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt
+# Zigbee Adapter path
+serial:
+  port: /dev/zigbee
+# Enable the Zigbee2MQTT WebUI
+frontend:
+  port: 8080
+homeassistant: true
+advanced:
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  last_seen: ISO_8601
+  elapsed: true
+  # Let Zigbee2MQTT generate a new network key on first start
+  network_key: GENERATE

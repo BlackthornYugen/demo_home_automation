@@ -1,0 +1,14 @@
+alias: Water Leak
+description: ''
+trigger:
+  - platform: state
+    entity_id: binary_sensor.0x286d9700010dea0a_water_leak
+    to: 'on'
+    from: 'off'
+condition:
+  - condition: state
+    entity_id: binary_sensor.0x286d9700010dea0a_water_leak
+    state: 'on'
+action:
+  - service: script.1635722671623
+mode: single

@@ -1,0 +1,41 @@
+alias: Water Leak
+description: 'Blink lights when a leak is detected'
+trigger:
+  - platform: state
+    entity_id: binary_sensor.0x286d9700010dea0a_water_leak
+    to: 'on'
+    from: 'off'
+condition:
+  - condition: state
+    entity_id: binary_sensor.0x286d9700010dea0a_water_leak
+    state: 'on'
+action:
+  - scene: scene.kitchen_red
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - scene: scene.kitchen_red
+  - repeat:
+      count: '5'
+      sequence:
+        - device_id: b33c2deb27b27c6843cb8cc4ab107eb2
+          domain: light
+          entity_id: light.hue_color_lamp_1
+          type: flash
+        - device_id: b33c2deb27b27c6843cb8cc4ab107eb2
+          domain: light
+          entity_id: light.hue_color_lamp_2
+          type: flash
+        - device_id: b33c2deb27b27c6843cb8cc4ab107eb2
+          domain: light
+          entity_id: light.hue_color_lamp_3
+          type: flash
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 1
+            milliseconds: 0
+  - scene: scene.kitchen_white
+mode: single

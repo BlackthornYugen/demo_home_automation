@@ -1,0 +1,20 @@
+alias: Flash Kitchen Lights
+sequence:
+  - scene: scene.kitchen_scene
+  - repeat:
+      count: '3'
+      sequence:
+        - scene: scene.kitchen_white
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: 500
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 1
+            milliseconds: 0
+        - scene: scene.kitchen_scene
+  - scene: scene.kitchen_white
+mode: single

@@ -1,0 +1,34 @@
+version: '3.5'
+services:
+  mqtt:
+    image: docker.io/eclipse-mosquitto:2.0
+    restart: unless-stopped
+    volumes:
+      - "./mosquitto-data:/mosquitto"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    command: "mosquitto -c /mosquitto-no-auth.conf"
+
+  zigbee:
+    restart: unless-stopped
+    image: docker.io/koenkk/zigbee2mqtt
+    volumes:
+      - ./zigbee2mqtt-data:/app/data
+    ports:
+      - 8080:8080
+    environment:
+      - TZ=America/Toronto
+    group_add:
+      - dialout
+    devices:
+      - /dev/ttyACM0:/dev/zigbee
+
+  assistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./homeassistant-data:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
