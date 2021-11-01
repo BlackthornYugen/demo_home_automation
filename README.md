@@ -1,6 +1,11 @@
-## To Be Completed
+## Components Discussed
 
-Things will hopefully be here within ~20 hours.
+- Samsung Water Sensor
+- Texas Instruments CC2531 (not recommended)
+- ConBee v1 (not recommended)
+- SMARTLIGHT CC2652P Zigbee USB dongle
+- TI CC Flasher/Debugger
+- Phillips Hue Colour lights x3
 
 ## See also
 
